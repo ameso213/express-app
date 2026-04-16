@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
-  res.send('Hello from version 2!') 
+  res.send('Hello, this is deployment test for my app!') 
 })
 
 const PORT = 8081
