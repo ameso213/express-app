@@ -6,7 +6,7 @@ services:
     container_name: express-app
     restart: always
     ports:
-      - "80:3000"          # maps host port 80 → container port 3000
+      - "8081:3000"          # maps host port 80 → container port 3000
     environment:
       - NODE_ENV=production
 
