@@ -1,21 +1,20 @@
-version: '3.8'
-
 services:
   express-app:
     image: ${DOCKER_USERNAME}/express-app:latest
     container_name: express-app
     restart: always
     ports:
-      - "8081:3000"          # maps host port 80 → container port 3000
+      - "8081:3000"
     environment:
       - NODE_ENV=production
 
   watchtower:
-    image: containrrr/watchtower
+    image: containrrr/watchtower:1.7.1
     container_name: watchtower
     restart: always
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock   # lets Watchtower control Docker
-    command: --interval 30 express-app              # poll every 30s, watch only express-app
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 express-app
     environment:
-      - WATCHTOWER_CLEANUP=true                     # removes old images after update
+      - WATCHTOWER_CLEANUP=true
+      - DOCKER_API_VERSION=1.45       
